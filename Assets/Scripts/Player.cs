@@ -55,10 +55,7 @@ public class Player : MonoBehaviour
         {
                 
             nearest = findClosestInRange.Scan(nearest, transform.position, searchRange);
-            if (nearest != null)
-            {
-                moveType = MoveType.SpaceToResource;
-            }
+            moveType = MoveType.SpaceToResource;
         }
 
         //set direction to neareast resource if there is one
