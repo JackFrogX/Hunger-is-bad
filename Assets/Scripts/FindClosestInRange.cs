@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class FindClosestInRange : MonoBehaviour
 {
-    
     public ResourceNode Scan(ResourceNode nearest,Vector3 origin,float searchRange)
     {
         Collider2D[] actionCollider = Physics2D.OverlapCircleAll(origin, searchRange);
