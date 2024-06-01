@@ -34,16 +34,14 @@ public class PlayerInput : MonoBehaviour
         {
             moveDir.x = +1;
         }
-        if (!Input.GetKey(KeyCode.W) && 
-            !Input.GetKey(KeyCode.S) && 
-            !Input.GetKey(KeyCode.A) && 
-            !Input.GetKey(KeyCode.D)){
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
             moveDir = Vector2.zero;
         }
         moveDir = moveDir.normalized;
         return moveDir;
     }
-    
+
     // public bool GatherClosestInput()
     // {
     //     return Input.GetKey(KeyCode.Space);
