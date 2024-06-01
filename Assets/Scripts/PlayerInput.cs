@@ -43,10 +43,11 @@ public class PlayerInput : MonoBehaviour
         moveDir = moveDir.normalized;
         return moveDir;
     }
-    public bool GatherClosestInput()
-    {
-        return Input.GetKey(KeyCode.Space);
-    }
+    
+    // public bool GatherClosestInput()
+    // {
+    //     return Input.GetKey(KeyCode.Space);
+    // }
 
     public bool MoveToInput()
     {

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,9 +6,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float searchRange;
     [SerializeField] private float interactRange;
     private float minDis = 0.01f;
+
     [SerializeField] private MousePosition2D mousePos;
     [SerializeField] private FindClosestInRange findClosestInRange;
-    private new Rigidbody2D rigidbody2D;
+    [SerializeField] private new Rigidbody2D rigidbody2D;
     private Vector2 moveDir;
     private Vector2 mouseDir;
     private Vector2 nearestDir;
@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         destination = (Vector2)transform.position;
-        rigidbody2D = GetComponent<Rigidbody2D>();
         nearest = null;
     }
     private void Update()
@@ -51,9 +50,8 @@ public class Player : MonoBehaviour
         {
             nearest = null;
         }
-        if (PlayerInput.Instance.GatherClosestInput())
-        {
-                
+        if (Input.GetKeyDown(KeyCode.Space))
+        {  
             nearest = findClosestInRange.Scan(nearest, transform.position, searchRange);
             moveType = MoveType.SpaceToResource;
         }
