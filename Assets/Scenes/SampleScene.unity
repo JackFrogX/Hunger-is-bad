@@ -66134,11 +66134,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1015964181}
-  - component: {fileID: 1015964183}
   - component: {fileID: 1015964184}
+  - component: {fileID: 1015964183}
   - component: {fileID: 1015964185}
-  - component: {fileID: 1015964187}
-  - component: {fileID: 1015964188}
+  - component: {fileID: 1015964186}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -66247,11 +66246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 100
-  searchRange: 1
-  interactRange: 0.05
-  mousePos: {fileID: 1015964187}
-  findClosestInRange: {fileID: 1015964188}
---- !u!114 &1015964187
+--- !u!114 &1015964186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66260,22 +66255,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1015964180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e28f51b384ce61a458fbb238ad63a0f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f5a611f47520f74b9980a22598d1669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
---- !u!114 &1015964188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015964180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40993eae7e1d5d348b58265079303cb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  rigidbody2D: {fileID: 1015964183}
+  playerMovement: {fileID: 1015964185}
 --- !u!1001 &1228478794
 PrefabInstance:
   m_ObjectHideFlags: 0

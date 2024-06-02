@@ -5,7 +5,7 @@ using UnityEngine;
 public class KeyboardMovement : MonoBehaviour
 {
     [SerializeField] private new Rigidbody2D rigidbody2D;
-    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] Player player;
     private Vector2 moveDir;
     private void Update()
     {
@@ -13,6 +13,6 @@ public class KeyboardMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rigidbody2D.velocity = moveDir * playerMovement.MoveSpeed * Time.deltaTime;
+        rigidbody2D.velocity = moveDir * player.MoveSpeed * Time.deltaTime;
     }
 }

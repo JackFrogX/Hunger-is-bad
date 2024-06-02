@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]private float moveSpeed;
-    public float MoveSpeed
-    {
-        get {return moveSpeed;}
-    }
 
     // [SerializeField] private float moveSpeed;
     // [SerializeField] private float searchRange;
