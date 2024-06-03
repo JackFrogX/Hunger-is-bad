@@ -5,7 +5,7 @@ public class Gather : MonoBehaviour
     [SerializeField]private Player player;
     [SerializeField]private float searchRange;
     [SerializeField]private float minDis;
-    private FindClosestInRange findClosestInRange;
+
     private ResourceNode closestResource;
     private void OnDrawGizmos()
     {
@@ -18,8 +18,12 @@ public class Gather : MonoBehaviour
         closestResource = findClosestInRange.Find(transform.position,searchRange);
         if ( closestResource != null)
         {
-            MoveToPosition moveToPosition = new MoveToPosition(player.GetRigidbody2D,minDis,player.MoveSpeed);
-            moveToPosition.Move(transform.position,closestResource.transform.position);
+            MoveToPosition moveToPosition = new MoveToPosition(minDis,player.MoveSpeed);
+            moveToPosition.Move(transform.position,closestResource.transform.position,player.GetRigidbody2D);
+        }
+        if (player.GetRigidbody2D != null)
+        {
+            Debug.Log("in gather have rigidbody -> "+ player.GetRigidbody2D);
         }
     }
 }

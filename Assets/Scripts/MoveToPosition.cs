@@ -2,19 +2,22 @@ using UnityEngine;
 
 public class MoveToPosition
 {
-    private Rigidbody2D rigidbody2D;
     private float minDis;
     private float moveSpeed;
     
-    public MoveToPosition(Rigidbody2D rigidbody2DMeter,float minDisMeter, float moveSpeedMeter)
+    public MoveToPosition(float minDisMeter, float moveSpeedMeter)
     {
-        rigidbody2D = rigidbody2DMeter;
+        // rigidbody2D = rigidbody2DMeter;
         minDis = minDisMeter;
         moveSpeed = moveSpeedMeter;
     } 
-    public void Move(Vector2 origin, Vector2 destination)
+    public void Move(Vector2 origin, Vector2 destination,Rigidbody2D rigidbody2DMeter)
     {
         Vector2 posDirection = VectorLib.VectorToDestination(origin, destination, minDis);
-        rigidbody2D.velocity = posDirection.normalized * moveSpeed * Time.deltaTime;
+        rigidbody2DMeter.velocity = posDirection.normalized * moveSpeed * Time.deltaTime;
+        if (rigidbody2DMeter != null)
+        {
+            Debug.Log("in moveToPosition there are rigidbody ->" + rigidbody2DMeter);
+        }
     }
 }
