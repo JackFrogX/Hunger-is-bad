@@ -669,7 +669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.2
   mousePosition2D: {fileID: 519420033}
-  player: {fileID: 1015964185}
+  player: {fileID: 1015964188}
 --- !u!1 &603549891
 GameObject:
   m_ObjectHideFlags: 0
@@ -66136,8 +66136,9 @@ GameObject:
   - component: {fileID: 1015964181}
   - component: {fileID: 1015964184}
   - component: {fileID: 1015964183}
-  - component: {fileID: 1015964185}
+  - component: {fileID: 1015964188}
   - component: {fileID: 1015964186}
+  - component: {fileID: 1015964187}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -66233,19 +66234,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1187284, y: 0.10694265}
   m_EdgeRadius: 0
---- !u!114 &1015964185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015964180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32115c7415a97c47bdcef72b69a81d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 100
 --- !u!114 &1015964186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66259,7 +66247,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 1015964183}
-  playerMovement: {fileID: 1015964185}
+  player: {fileID: 1015964188}
+--- !u!114 &1015964187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015964180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d96327c987cd2f4e99a37477273ba1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1015964188}
+  searchRange: 0.86
+  minDis: 0.11
+--- !u!114 &1015964188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015964180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba0c3faad45b49b45acbb91ce0e61485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 100
+  rigidbody2D: {fileID: 1015964183}
+  gather: {fileID: 1015964187}
 --- !u!1001 &1228478794
 PrefabInstance:
   m_ObjectHideFlags: 0
