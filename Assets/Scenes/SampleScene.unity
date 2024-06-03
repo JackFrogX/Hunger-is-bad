@@ -66276,7 +66276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 100
-  rigidbody2D: {fileID: 1015964183}
+  rb2D: {fileID: 1015964183}
   gather: {fileID: 1015964187}
 --- !u!1001 &1228478794
 PrefabInstance:

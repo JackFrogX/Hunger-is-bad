@@ -11,13 +11,13 @@ public class MoveToPosition
         minDis = minDisMeter;
         moveSpeed = moveSpeedMeter;
     } 
-    public void Move(Vector2 origin, Vector2 destination,Rigidbody2D rigidbody2DMeter)
+    public void Move(Vector2 origin, Vector2 destination,Rigidbody2D rb2D)
     {
-        Vector2 posDirection = VectorLib.VectorToDestination(origin, destination, minDis);
-        rigidbody2DMeter.velocity = posDirection.normalized * moveSpeed * Time.deltaTime;
-        if (rigidbody2DMeter != null)
+        Vector2 posDirection = VectorLib.VectorToDestination(destination,origin, minDis);
+        rb2D.velocity = posDirection.normalized * moveSpeed * Time.deltaTime;
+        if (rb2D != null)
         {
-            Debug.Log("in moveToPosition there are rigidbody ->" + rigidbody2DMeter);
+            Debug.Log("in moveToPosition there are rigidbody ->" + rb2D);
         }
     }
 }
