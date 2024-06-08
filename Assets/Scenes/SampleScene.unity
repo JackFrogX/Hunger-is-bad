@@ -66246,7 +66246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5a611f47520f74b9980a22598d1669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 1015964183}
   player: {fileID: 1015964188}
 --- !u!114 &1015964187
 MonoBehaviour:
@@ -66278,6 +66277,7 @@ MonoBehaviour:
   moveSpeed: 100
   rb2D: {fileID: 1015964183}
   gather: {fileID: 1015964187}
+  keyboardMovement: {fileID: 1015964186}
 --- !u!1001 &1228478794
 PrefabInstance:
   m_ObjectHideFlags: 0
