@@ -15,9 +15,5 @@ public class MoveToPosition
     {
         Vector2 posDirection = VectorLib.VectorToDestination(destination,origin, minDis);
         rb2D.velocity = posDirection.normalized * moveSpeed * Time.deltaTime;
-        if (rb2D != null)
-        {
-            Debug.Log("in moveToPosition there are rigidbody ->" + rb2D);
-        }
     }
 }

@@ -16,16 +16,15 @@ public class Gather : MonoBehaviour
     }
     public void Gathering()
     {
-        FindClosestInRange findClosestInRange = new FindClosestInRange();
-        closestResource = findClosestInRange.Find(transform.position,searchRange);
         if ( closestResource != null)
         {
             MoveToPosition moveToPosition = new MoveToPosition(minDis,player.MoveSpeed);
             moveToPosition.Move(transform.position,closestResource.transform.position,player.Rb2D);
         }
-        if (player.Rb2D != null)
-        {
-            Debug.Log("in gather have rigidbody -> "+ player.Rb2D);
-        }
+    }
+    public void CloseResourceFinder()
+    {
+        FindClosestInRange findClosestInRange = new FindClosestInRange();
+        closestResource = findClosestInRange.Find(transform.position,searchRange);
     }
 }
