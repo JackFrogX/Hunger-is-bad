@@ -5,9 +5,15 @@ public class Gather : MonoBehaviour
     [SerializeField]private Player player;
     [SerializeField]private float searchRange;
     [SerializeField]private float minDis;
-    // [SerializeField]private Rigidbody2D rb2D;
 
+    enum GatherState
+    {
+        MoveTo,
+        NodeGathering,
+        Finish
+    }
 
+    private GatherState gatherState;
     private ResourceNode closestResource;
     private void OnDrawGizmos()
     {
@@ -16,15 +22,38 @@ public class Gather : MonoBehaviour
     }
     public void Gathering()
     {
-        if ( closestResource != null)
+        switch (gatherState)
         {
-            MoveToPosition moveToPosition = new MoveToPosition(minDis,player.MoveSpeed);
-            moveToPosition.Move(transform.position,closestResource.transform.position,player.Rb2D);
+            case GatherState.MoveTo:
+                if ( closestResource != null)
+                {
+                    MoveToPosition moveToPosition = new MoveToPosition(minDis,player.MoveSpeed);
+                    moveToPosition.Move(transform.position,closestResource.transform.position,player.Rb2D);
+                    if (VectorLib.VectorToDestination(closestResource.transform.position,transform.position,minDis) == Vector2.zero)
+                    {
+                        gatherState = GatherState.NodeGathering;
+                    }
+                }
+                break;
+            case GatherState.NodeGathering:
+                if (closestResource != null)
+                {
+                    closestResource.GetDamage();
+                }
+                else
+                {
+                    gatherState = GatherState.Finish;
+                }
+                
+                break;
+            case GatherState.Finish:
+                break;
         }
     }
     public void CloseResourceFinder()
     {
         FindClosestInRange findClosestInRange = new FindClosestInRange();
         closestResource = findClosestInRange.Find(transform.position,searchRange);
+        gatherState = GatherState.MoveTo;
     }
 }
