@@ -4,7 +4,7 @@ public class FindClosestInRange
 {
     public ResourceNode Find(Vector3 origin, float searchRange)
     {
-        Debug.Log("find closest run");
+        // Debug.Log("find closest run");
         bool firstNode = true;
         ResourceNode nearest = null;
         Collider2D[] findCollider = Physics2D.OverlapCircleAll(origin, searchRange);
@@ -29,10 +29,10 @@ public class FindClosestInRange
                 }
             }
         }
-        if (nearest == null)
-        {
-            Debug.Log("cant found nearest");
-        }
+        // if (nearest == null)
+        // {
+        //     Debug.Log("cant found nearest");
+        // }
         return nearest;
     }
 }
