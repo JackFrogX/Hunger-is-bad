@@ -41,23 +41,23 @@ public class MouseMovement : MonoBehaviour
     }
     public void Movement()
     {  
-        if (destinationState == DestinationState.Ground)
+        MoveToPosition moveToPosition = new MoveToPosition(player.MinDis,player.MoveSpeed);
+        switch (destinationState)
         {
-            MoveToPosition moveToPosition = new MoveToPosition(player.MinDis,player.MoveSpeed);
-            moveToPosition.Move(transform.position,destination,player.Rb2D);
-        }
-        if (destinationState == DestinationState.Node)
-        {
-            if (mouseNode != null)
-            {
-                MoveToPosition moveToPosition = new MoveToPosition(player.MinDis,player.MoveSpeed);
-                moveToPosition.Move(transform.position,mouseNode.transform.position,player.Rb2D);
-                if (VectorLib.VectorToDestination(mouseNode.transform.position,transform.position,player.MinDis) == Vector2.zero)
+            case DestinationState.Ground:
+                moveToPosition.Move(transform.position,destination,player.Rb2D);
+                break;
+            case DestinationState.Node:
+                if (mouseNode != null)
                 {
-                    mouseNode.GetDamage();
-                    mouseNode = null;
+                    moveToPosition.Move(transform.position,mouseNode.transform.position,player.Rb2D);
+                    if (VectorLib.VectorToDestination(mouseNode.transform.position,transform.position,player.MinDis) == Vector2.zero)
+                    {
+                        mouseNode.GetDamage();
+                        mouseNode = null;
+                    }
                 }
-            }
+                break;
         }
     }
 }
