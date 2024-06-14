@@ -4,9 +4,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField]private float moveSpeed;
     [SerializeField]private Rigidbody2D rb2D;
+    [SerializeField]private float minDis;
     [SerializeField]private Gather gather;
-
     [SerializeField]private KeyboardMovement keyboardMovement;
+    [SerializeField]private MouseMovement mouseMovement;
 
     public float MoveSpeed
     {
@@ -17,11 +18,18 @@ public class Player : MonoBehaviour
         get { return rb2D;}
         set { rb2D = value;}
     }
+
+    public float MinDis
+    {
+        get { return minDis; }
+        set { minDis = value; }
+    }
     
     enum PlayerState
     {
         Moving,
-        Gathering
+        Gathering,
+        MouseMovement
     }
 
     private PlayerState state;
@@ -37,13 +45,20 @@ public class Player : MonoBehaviour
             state = PlayerState.Gathering;
             gather.CloseResourceFinder();
         }
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            state = PlayerState.MouseMovement;
+            mouseMovement.SetDestination();        
+        }
+
     }
     private void FixedUpdate()
     {
         switch (state)
         {
             case PlayerState.Moving: keyboardMovement.Execute(); break;
-            case PlayerState.Gathering: gather.Gathering(); break;   
+            case PlayerState.Gathering: gather.Gathering(); break;  
+            case PlayerState.MouseMovement: mouseMovement.Movement(); break;
         }
     }
 }
