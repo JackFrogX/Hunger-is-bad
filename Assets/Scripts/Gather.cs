@@ -6,17 +6,25 @@ public class Gather : MonoBehaviour
     [SerializeField]private float searchRange;
 
     private ResourceNode closestResource;
+    private Vector2 nodeDirection;
+    
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, searchRange);
         Gizmos.DrawWireSphere(transform.position, player.MinDis);
     }
+#endif
+    public void CloseResourceFinder()
+    {
+        FindClosestInRange findClosestInRange = new FindClosestInRange();
+        closestResource = findClosestInRange.Find(transform.position,searchRange);
+    }
     public void Gathering()
     {
         if (closestResource != null)
         {
-            MoveToPosition moveToPosition = new MoveToPosition(player.MinDis,player.MoveSpeed);
-            moveToPosition.Move(transform.position,closestResource.transform.position,player.Rb2D);
+            nodeDirection = VectorLib.VectorToDestination(closestResource.transform.position,transform.position,player.MinDis);
             if (VectorLib.VectorToDestination(closestResource.transform.position,transform.position,player.MinDis) == Vector2.zero)
             {
                 closestResource.GetDamage();
@@ -24,9 +32,8 @@ public class Gather : MonoBehaviour
             }
         }
     }
-    public void CloseResourceFinder()
+    public void Excute()
     {
-        FindClosestInRange findClosestInRange = new FindClosestInRange();
-        closestResource = findClosestInRange.Find(transform.position,searchRange);
+        player.Rb2D.velocity = nodeDirection.normalized * player.MoveSpeed * Time.deltaTime;
     }
 }

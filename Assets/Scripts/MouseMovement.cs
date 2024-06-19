@@ -10,6 +10,7 @@ public class MouseMovement : MonoBehaviour
     [SerializeField] private float clickRange;
     private Vector2 destination;
     
+    private Vector2 mouseDirection;
     enum DestinationState
     {
         Ground,
@@ -18,39 +19,47 @@ public class MouseMovement : MonoBehaviour
 
     private DestinationState destinationState;
     private ResourceNode mouseNode;
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(mousePosition2D.MousePosition(), clickRange);
     }
+    #endif
     public void SetDestination()
     {
-        FindClosestInRange findClosestInRange = new FindClosestInRange();
-        mouseNode = findClosestInRange.Find(destination,clickRange);
-        if (mouseNode ==null)
+        Vector2 destinationCheck = mousePosition2D.MousePosition();
+        FindClosestInRange checkClosestInRange = new FindClosestInRange();
+        if ( checkClosestInRange.Find(destinationCheck,clickRange) ==null)
         {
-            destination = mousePosition2D.MousePosition();
             destinationState = DestinationState.Ground;
-            Debug.Log(destinationState);
         }
         else
         {
             destinationState = DestinationState.Node;
-            Debug.Log(destinationState);
-
         }
+        Debug.Log(checkClosestInRange.Find(destinationCheck,clickRange));
     }
+
+    // public void Deselect()
+    // {
+    //     mouseDirection = Vector2.zero;
+    // }
+
+    
     public void Movement()
     {  
-        MoveToPosition moveToPosition = new MoveToPosition(player.MinDis,player.MoveSpeed);
+        FindClosestInRange findClosestInRange = new FindClosestInRange();
+        mouseNode = findClosestInRange.Find(destination,clickRange);
         switch (destinationState)
         {
             case DestinationState.Ground:
-                moveToPosition.Move(transform.position,destination,player.Rb2D);
+                destination = mousePosition2D.MousePosition();
+                mouseDirection = VectorLib.VectorToDestination(destination,transform.position,player.MinDis);
                 break;
             case DestinationState.Node:
                 if (mouseNode != null)
                 {
-                    moveToPosition.Move(transform.position,mouseNode.transform.position,player.Rb2D);
+                    mouseDirection = VectorLib.VectorToDestination(mouseNode.transform.position,transform.position,player.MinDis);
                     if (VectorLib.VectorToDestination(mouseNode.transform.position,transform.position,player.MinDis) == Vector2.zero)
                     {
                         mouseNode.GetDamage();
@@ -60,4 +69,9 @@ public class MouseMovement : MonoBehaviour
                 break;
         }
     }
+    public void Excute()
+    {
+        player.Rb2D.velocity = player.MoveSpeed * Time.deltaTime * mouseDirection.normalized;
+    }
+
 }

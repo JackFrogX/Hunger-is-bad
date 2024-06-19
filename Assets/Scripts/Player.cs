@@ -29,7 +29,8 @@ public class Player : MonoBehaviour
     {
         Moving,
         Gathering,
-        MouseMovement
+        MouseMovement,
+        Stand
     }
 
     private PlayerState state;
@@ -40,25 +41,37 @@ public class Player : MonoBehaviour
         {
             state = PlayerState.Moving;
         }
+        keyboardMovement.Movement();
+
         if (Input.GetKey(KeyCode.Space))
         {
-            state = PlayerState.Gathering;
             gather.CloseResourceFinder();
+            state = PlayerState.Gathering;
+        }
+        gather.Gathering();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            mouseMovement.SetDestination();
+            state = PlayerState.MouseMovement;
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            state = PlayerState.MouseMovement;
-            mouseMovement.SetDestination();        
+            mouseMovement.Movement(); 
         }
-
+        // else
+        // {
+        //     mouseMovement.Deselect();
+        // }
     }
     private void FixedUpdate()
     {
         switch (state)
         {
             case PlayerState.Moving: keyboardMovement.Execute(); break;
-            case PlayerState.Gathering: gather.Gathering(); break;  
-            case PlayerState.MouseMovement: mouseMovement.Movement(); break;
+            case PlayerState.Gathering: gather.Excute(); break;  
+            case PlayerState.MouseMovement: mouseMovement.Excute(); break;
+            case PlayerState.Stand:break;
         }
     }
 }
