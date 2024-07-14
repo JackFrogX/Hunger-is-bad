@@ -50,19 +50,12 @@ public class Player : MonoBehaviour
         }
         gather.Gathering();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             mouseMovement.SetDestination();
             state = PlayerState.MouseMovement;
         }
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            mouseMovement.Movement(); 
-        }
-        // else
-        // {
-        //     mouseMovement.Deselect();
-        // }
+        mouseMovement.Movement(); 
     }
     private void FixedUpdate()
     {
