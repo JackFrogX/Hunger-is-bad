@@ -13,22 +13,43 @@ public class MouseMovement : MonoBehaviour
     private Vector2 mouseDirection;
 
     private ResourceNode mouseNode;
+
     #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(mousePosition2D.MousePosition(), clickRange);
     }
-    #endif
-    public void SetDestination()
+    #endif  
+    // public void SetDestination()
+    // {
+    //     FindClosestInRange findClosestInRange = new FindClosestInRange();
+    //     destination = mousePosition2D.MousePosition();
+    // }
+    // public void Movement()
+    // {  
+    //     mouseDirection = VectorLib.VectorToDestination(destination,transform.position,player.MinDis);
+    // }
+
+    public void SetGatheNode()
     {
         FindClosestInRange findClosestInRange = new FindClosestInRange();
-        mouseNode = findClosestInRange.Find(destination,clickRange);
         destination = mousePosition2D.MousePosition();
-    }   
-    public void Movement()
-    {  
-        mouseDirection = VectorLib.VectorToDestination(destination,transform.position,player.MinDis);
+        mouseNode = findClosestInRange.Find(destination,clickRange);
     }
+    public void Movement()
+    {
+        if (mouseNode != null)
+        {
+            mouseDirection = VectorLib.VectorToDestination(mouseNode.transform.position,transform.position,player.MinDis);
+        }
+        if (mouseNode != null && VectorLib.VectorToDestination(mouseNode.transform.position,transform.position,player.MinDis) == Vector2.zero)
+        {
+            mouseNode.GetDamage();
+            mouseNode = null;
+        }
+    }
+    
+
     public void Excute()
     {
         player.Rb2D.velocity = player.MoveSpeed * Time.deltaTime * mouseDirection.normalized;

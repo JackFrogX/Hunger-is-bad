@@ -50,9 +50,9 @@ public class Player : MonoBehaviour
         }
         gather.Gathering();
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            mouseMovement.SetDestination();
+            mouseMovement.SetGatheNode();
             state = PlayerState.MouseMovement;
         }
         mouseMovement.Movement(); 

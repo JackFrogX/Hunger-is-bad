@@ -29,10 +29,10 @@ public class FindClosestInRange
                 }
             }
         }
-        // if (nearest == null)
-        // {
-        //     Debug.Log("cant found nearest");
-        // }
+        if (nearest == null)
+        {
+            Debug.Log("cant found nearest");
+        }
         return nearest;
     }
 }
