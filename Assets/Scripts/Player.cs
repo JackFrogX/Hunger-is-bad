@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            mouseMovement.SetGatheNode();
+            mouseMovement.SetDestination();
             state = PlayerState.MouseMovement;
         }
         mouseMovement.Movement(); 
